@@ -28,4 +28,11 @@ public class Car {
 	private TypeCategory category;
 	
 	private Double hourPrice;
+
+	public Car(String model, TypeCategory category, Double hourPrice) {
+		this.model = model;
+		this.category = category;
+		this.hourPrice = hourPrice;
+	}
+
 }
