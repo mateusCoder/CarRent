@@ -28,4 +28,13 @@ public class CarFormDTO {
 	public Car convertToCar(CarRepository carRepository) {
 		return new Car(model, category, hourPrice);
 	}
+
+	public Car update(Integer id, CarRepository carRepository) {
+		Car car = carRepository.getById(id);
+		car.setModel(this.model);
+		car.setCategory(this.category);
+		car.setHourPrice(this.hourPrice);
+		
+		return car;
+	}
 }
