@@ -2,6 +2,8 @@ package com.mateus.carRental.controllers;
 
 import java.net.URI;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -43,7 +45,7 @@ public class CarController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<CarDTO> add(@RequestBody CarFormDTO carForm, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<CarDTO> add(@RequestBody @Valid CarFormDTO carForm, UriComponentsBuilder uriBuilder) {
 		Car car = carForm.convertToCar(carRepository);
 		carRepository.save(car);
 		

@@ -16,13 +16,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CarFormDTO {
 
-	@NotEmpty
+	@NotEmpty @NotNull
 	private String model;
 	
 	@NotNull
 	private TypeCategory category;
 	
-	@NotNull
+	@NotNull 
 	private Double hourPrice;
 
 	public Car convertToCar(CarRepository carRepository) {
