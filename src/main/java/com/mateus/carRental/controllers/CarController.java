@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,6 +48,7 @@ public class CarController {
 		}
 	}
 	
+	@Transactional
 	@PostMapping
 	public ResponseEntity<CarDTO> add(@RequestBody @Valid CarFormDTO carForm, UriComponentsBuilder uriBuilder) {
 		Car car = carForm.convertToCar(carRepository);
@@ -62,6 +64,13 @@ public class CarController {
 		Car car = carForm.update(id, carRepository);
 		
 		return ResponseEntity.ok(new CarDTO(car));
+	}
+	
+	@Transactional
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> delete(@PathVariable Integer id){
+		carRepository.deleteById(id);	
+		return ResponseEntity.ok().build();
 	}
 
 }
